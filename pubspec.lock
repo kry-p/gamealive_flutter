@@ -50,20 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  curved_navigation_bar:
+  expandable:
     dependency: "direct main"
     description:
-      name: curved_navigation_bar
+      name: expandable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.7"
-  custom_navigation_bar:
-    dependency: "direct main"
-    description:
-      name: custom_navigation_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.2"
+    version: "5.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -71,13 +64,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  fancy_bottom_navigation:
-    dependency: "direct main"
-    description:
-      name: fancy_bottom_navigation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -179,4 +165,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=2.0.0"
