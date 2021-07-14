@@ -14,13 +14,29 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
+        padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
         child: Row(
           children: [
             Expanded(
               child: Column(
-                children: [
-                  Text(title),
-                  description != null ? Text(description) : Container(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(bottom: 0),
+                    child: Text(title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+                  description!= null ? Text(
+                    description,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[500],
+                    ),
+                  ): Container(),
                 ],
               ),
             ),

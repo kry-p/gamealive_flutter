@@ -24,6 +24,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # API requests
+  dio: ^4.0.0
+  http: ^0.13.3
+  logger: ^1.0.0
+
   # icons
   ionicons: ^0.1.2
 
