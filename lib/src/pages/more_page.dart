@@ -17,6 +17,7 @@ class MorePage extends StatelessWidget {
     ),
     MenuItem(
       title: '알림 설정',
+      description: '새로운 심의정보 알림을 설정합니다.',
     ),
   ];
 

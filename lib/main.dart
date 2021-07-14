@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gamealive/src/app.dart';
 import 'package:flutter/services.dart';
+import 'package:gamealive/src/modules/api_provider.dart';
+
+import 'package:provider/provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -30,15 +33,22 @@ class _GameAliveAppState extends State<GameAliveApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: _colorMap['Color2'],
-        accentColor: _colorMap['Color1'],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ApiProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: _colorMap['Color2'],
+          accentColor: _colorMap['Color1'],
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => App(),
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => App(),
-      },
     );
   }
 }
