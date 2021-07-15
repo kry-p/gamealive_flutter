@@ -17,4 +17,15 @@ class ApiProvider with ChangeNotifier {
     var _response = await http.get(_uri);
     return json.decode(_response.body);
   }
+
+  Future<void> getDataByKeyword(String keyword) async {
+    Uri _uri = Uri.http(
+        _baseUrl,
+        "/api/review/listbykeyword",
+        {'keyword': keyword}
+    );
+
+    var _response = await http.get(_uri);
+    return json.decode(_response.body);
+  }
 }

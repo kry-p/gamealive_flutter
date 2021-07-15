@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   # API requests
   dio: ^4.0.0
   http: ^0.13.3
@@ -34,6 +37,9 @@ dependencies:
 
   # expandable
   expandable: ^5.0.1
+
+  # utility
+  intl: ^0.17.0
 
   # Shared preferences for application
   provider: ^5.0.0

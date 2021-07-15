@@ -5,6 +5,8 @@ import 'package:gamealive/src/modules/api_provider.dart';
 
 import 'package:provider/provider.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -48,6 +50,14 @@ class _GameAliveAppState extends State<GameAliveApp> {
         routes: {
           '/': (context) => App(),
         },
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('ko','KR')
+        ],
       ),
     );
   }
