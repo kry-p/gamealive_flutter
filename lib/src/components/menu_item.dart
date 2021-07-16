@@ -14,6 +14,7 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
+        color: Colors.white,
         padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
         child: Row(
           children: [

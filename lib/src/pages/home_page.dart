@@ -49,48 +49,71 @@ class _HomePageState extends State<HomePage> {
     provider = Provider.of<ApiProvider>(context);
     converter = DateConverter();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                _presentDatePicker("start");
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(startDate, style: TextStyle(fontSize: 20),),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                _presentDatePicker("end");
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(endDate, style: TextStyle(fontSize: 20),),
-              ),
-            ),
+            Text("game", style: TextStyle(color: Colors.black87, fontFamily: "neodgm", letterSpacing: 2.0)),
+            Text("alive", style: TextStyle(color: Color.fromARGB(255, 106, 193, 184), fontFamily: "neodgm", letterSpacing: 2.0)),
           ],
         ),
-        FutureBuilder(
-          future: provider.getDataByDate(converter.dateToString(2021, 3, 1), converter.dateToString(2021, 7, 14), 1),
-          builder: (context, snapshot) {
-            if(snapshot.data!=null){
-              return Container(
-                child: Center(
-                  child: Text(snapshot.data.toString()),
-                ),
-              );
-            }
-            else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
-      ],
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.menu), onPressed: null)
+        ],
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(16),
+                alignment: Alignment.topLeft,
+                child: Text("최신 심의 정보에요.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      _presentDatePicker("start");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(startDate, style: TextStyle(fontSize: 20),),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _presentDatePicker("end");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(endDate, style: TextStyle(fontSize: 20),),
+                    ),
+                  ),
+                ],
+              ),
+              FutureBuilder(
+                future: provider.getDataByDate(converter.dateToString(2021, 3, 1), converter.dateToString(2021, 7, 14), 1),
+                builder: (context, snapshot) {
+                  if(snapshot.data!=null){
+                    return Container(
+                      child: Center(
+                        child: Text(snapshot.data.toString()),
+                      ),
+                    );
+                  }
+                  else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ],
+          ),
+      ),
     );
   }
 }

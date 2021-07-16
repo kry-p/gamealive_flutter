@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gamealive/src/app.dart';
 import 'package:flutter/services.dart';
 import 'package:gamealive/src/modules/api_provider.dart';
+import 'package:gamealive/src/modules/sharedpref_provider.dart';
+import 'package:gamealive/src/pages/settings_page.dart';
 
 import 'package:provider/provider.dart';
 
@@ -40,15 +42,20 @@ class _GameAliveAppState extends State<GameAliveApp> {
         ChangeNotifierProvider(
           create: (_) => ApiProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => SharedPrefProvider(),
+        )
       ],
       child: MaterialApp(
         theme: ThemeData(
           primaryColor: _colorMap['Color2'],
           accentColor: _colorMap['Color1'],
+          fontFamily: 'SpoqaHanSans'
         ),
         initialRoute: '/',
         routes: {
           '/': (context) => App(),
+          '/settings': (context) => SettingsPage(),
         },
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

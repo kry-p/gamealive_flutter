@@ -10,17 +10,6 @@ class MorePage extends StatelessWidget {
     '오픈소스 라이선스',
   ];
 
-  final List<Widget> memberMenuWidget = <Widget>[
-    MenuItem(
-      title: '마이페이지',
-      description: '테스트',
-    ),
-    MenuItem(
-      title: '알림 설정',
-      description: '새로운 심의정보 알림을 설정합니다.',
-    ),
-  ];
-
   Widget listItem(Color color, String title) => Container(
     height: 32,
     color: color,
@@ -39,28 +28,60 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    final List<Widget> memberMenuWidget = <Widget>[
+      MenuItem(
+        title: '마이페이지',
+        description: '(회원 전용) 내 정보를 확인하고 수정하세요.',
+      ),
+      MenuItem(
+        title: '알림 설정',
+        description: '(회원 전용) 새로운 심의정보 알림을 설정합니다.',
+      ),
+      MenuItem(
+        title: '심의정보 가져오기 설정',
+        description: '심의정보를 검색할 때의 옵션을 설정합니다.',
+        onTap: () {
+          Navigator.pushNamed(context, '/settings');
+        },
+      ),
+    ];
+
+    Widget scrollView = Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Text("더보기"),
-            elevation: 8,
+            expandedHeight: 200,
+            floating: false,
             pinned: true,
-            floating: true,
-            expandedHeight: 160,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30)
-              ),
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                  "설정",
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              // centerTitle: true,
+              collapseMode: CollapseMode.parallax,
             ),
           ),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4
-            ),
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => listItem(Color.fromARGB(255,255,0,0),"item #$index"),
-              childCount: 4,
+          SliverToBoxAdapter(
+            child: Container(
+              height: 32,
+              margin: EdgeInsets.all(0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                    height: 32,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SliverList(
@@ -70,7 +91,7 @@ class MorePage extends StatelessWidget {
                 if (index.isEven) {
                   return memberMenuWidget[itemIndex];
                 }
-                return Divider(height: 0, color: Colors.grey[300]);
+                return Divider(height: 0, thickness: 0.5, color: Colors.grey[300]);
               },
               semanticIndexCallback: (Widget widget, int localIndex) {
                 if (localIndex.isEven) {
@@ -78,7 +99,7 @@ class MorePage extends StatelessWidget {
                 }
                 return null;
               },
-              childCount: 2*memberMenuWidget.length,
+              childCount: 2 * memberMenuWidget.length,
             ),
           ),
           SliverPadding(
@@ -89,9 +110,12 @@ class MorePage extends StatelessWidget {
                   (BuildContext context, int index) {
                 final int itemIndex = index ~/ 2;
                 if (index.isEven) {
-                  return Padding(
-                      child: Text(commonMenu[itemIndex]),
-                      padding: EdgeInsets.all(16));
+                  return Container(
+                    color: Colors.white,
+                    child: Padding(
+                        child: Text(commonMenu[itemIndex]),
+                        padding: EdgeInsets.all(16)),
+                  );
                 }
                 return Divider(height: 0, color: Colors.grey[300]);
               },
@@ -107,5 +131,7 @@ class MorePage extends StatelessWidget {
         ],
       ),
     );
+
+    return scrollView;
   }
 }
